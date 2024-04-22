@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 align="center">OX Quiz Game</h1>
+    <br>
+    <table border="1" align="center">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>내용</th>
+            <th>해답</th>
+            <th>작성자</th>
+            <th>변경</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+
+
+        <tr th:each="ox : ${oxDto}" th:object="${ox}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{detail}"></td>
+            <td th:text="*{answer}"></td>
+            <td th:text="*{name}"></td>
+            <td>
+                <form th:action="@{/ox/update}" method="get">
+                    <input type="hidden" name="updateId" th:value="*{id}">
+                    <input type="submit" value="수정">
+                </form>
+            </td>
+            <td>
+                <!--PathVariable 로 전달해서 삭제처리-->
+                <form th:action=
+                              "@{/ox/delete/{deleteId}(deleteId=*{id})}" method="post">
+
+                    <input type="hidden" name="deleteId" th:value="*{id}">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <form align="center" th:action="@{/ox/insert}">
+        <input type="submit" value="Quiz 등록하기">
+    </form>
+
+    <br>
+
+    <form align="center" th:action="@{/ox/quiz}">
+        <input type="submit" value="Main Back">
+    </form>
+</body>
+</html>

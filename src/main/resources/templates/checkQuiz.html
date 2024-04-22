@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 align="center">* OX Quiz Game : AnswerCheck *</h1>
+
+    <br>
+
+    <h2 align="center" th:text="${check}"></h2>
+
+    <br>
+
+    <form align="center" th:action="@{/ox/play}">
+        <input type="submit" value="Replay Quiz">
+    </form>
+
+    <br>
+
+    <form align="center" th:action="@{/ox/quiz}">
+        <input type="submit" value="Main Back">
+    </form>
+</body>
+</html>
